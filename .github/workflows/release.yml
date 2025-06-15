@@ -41,10 +41,10 @@ jobs:
         uses: helm/chart-releaser-action@v1
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-        with:
-          version: ${{ steps.extract_version.outputs.version }}
-          # Paramètres corrects pour l'action :
-          owner: ${{ github.repository_owner }}
-          repo: ${{ github.event.repository.name }}
-          # Ajoutez ceci si votre chart est dans un sous-dossier :
-          # charts_dir: charts
+        # with:
+        #   version: ${{ steps.extract_version.outputs.version }}
+        #   # Paramètres corrects pour l'action :
+        #   owner: ${{ github.repository_owner }}
+        #   repo: ${{ github.event.repository.name }}
+        #   # Ajoutez ceci si votre chart est dans un sous-dossier :
+        #   # charts_dir: charts
