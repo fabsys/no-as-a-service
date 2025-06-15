@@ -33,11 +33,11 @@ jobs:
 
       - name: Setup Helm
         uses: azure/setup-helm@v3
-        with:
-          version: v3.14.0  # Spécifiez une version explicite de Helm
+        # with:
+        #   version: v3.14.0  # Spécifiez une version explicite de Helm
 
       - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.8.0  # Version mise à jour
+        uses: helm/chart-releaser-action@v1
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         with:
