@@ -2,10 +2,8 @@ name: Build and Push Docker image
 
 on:
   push:
-    branches: [ main ]
     tags:
-      - "*"
-  workflow_dispatch:
+      - "v*"  # Modifier ce pattern selon votre convention de tagging
 
 jobs:
   build-and-push:
@@ -13,6 +11,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}  # Checkout spécifiquement le tag
 
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
@@ -21,10 +21,14 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Extract Docker tag
+        id: extract_tag
+        run: echo "tag=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/${{ github.repository_owner }}/no-as-a-service:${GITHUB_REF_NAME} .
+          docker build -t ghcr.io/${{ github.repository_owner }}/no-as-a-service:${{ steps.extract_tag.outputs.tag }} .
 
       - name: Push Docker image
         run: |
-          docker push ghcr.io/${{ github.repository_owner }}/no-as-a-service:${GITHUB_REF_NAME}
+          docker push ghcr.io/${{ github.repository_owner }}/no-as-a-service:${{ steps.extract_tag.outputs.tag }}
