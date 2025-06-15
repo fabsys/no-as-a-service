@@ -30,11 +30,12 @@ jobs:
             version="${GITHUB_REF#refs/tags/}"
           fi
           echo "version=$version" >> $GITHUB_OUTPUT
+          echo "Extracted version: $version"
 
       - name: Setup Helm
         uses: azure/setup-helm@v3
         # with:
-        #   version: v3.14.0  # Spécifiez une version explicite de Helm
+        #   version: v3.14.0
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1
@@ -42,4 +43,8 @@ jobs:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         with:
           version: ${{ steps.extract_version.outputs.version }}
-          charts_repo_url: "https://${{ github.repository_owner }}.github.io/${{ github.repository }}"  # URL explicite
+          # Paramètres corrects pour l'action :
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.event.repository.name }}
+          # Ajoutez ceci si votre chart est dans un sous-dossier :
+          # charts_dir: charts
