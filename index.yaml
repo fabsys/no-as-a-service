@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   no-as-a-service:
   - apiVersion: v2
+    appVersion: v1.0.10
+    created: "2025-06-15T21:33:40.409541738Z"
+    description: A Helm chart for Kubernetes
+    digest: 5038f862d772ab16bd739849ec8c669b457a6376387168b23b10304ade175ef5
+    name: no-as-a-service
+    type: application
+    urls:
+    - https://github.com/fabsys/no-as-a-service/releases/download/no-as-a-service-0.1.10/no-as-a-service-0.1.10.tgz
+    version: 0.1.10
+  - apiVersion: v2
     appVersion: v1.0.2
     created: "2025-06-15T20:04:23.728563076Z"
     description: A Helm chart for Kubernetes
@@ -51,4 +61,4 @@ entries:
     urls:
     - https://github.com/fabsys/no-as-a-service/releases/download/no-as-a-service-0.1.0/no-as-a-service-0.1.0.tgz
     version: 0.1.0
-generated: "2025-06-15T20:04:23.728581241Z"
+generated: "2025-06-15T21:33:40.40959096Z"
